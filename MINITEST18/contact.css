@@ -131,6 +131,31 @@ body {
   transform: translateY(0);
 }
 
+.btn-update {
+  display: none;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0 16px;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-md);
+  height: 49px;
+}
+
+.btn-update:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-update:active {
+  transform: translateY(0);
+}
+
 /* Table Section */
 .table-section {
   background: var(--card-bg);

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://mini-project-session18.vercel.app/ -->
+<html lang="vi"><script src="chrome-extension://nimlmejbmnecnaghgmbahmbaddhjbecg/content/location/location.js" id="nimlmejbmnecnaghgmbahmbaddhjbecg"></script><script src="chrome-extension://nimlmejbmnecnaghgmbahmbaddhjbecg/libs/extend-native-history-api.js"></script><script src="chrome-extension://nimlmejbmnecnaghgmbahmbaddhjbecg/libs/requests.js"></script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Sản Phẩm</title>
+    <link rel="stylesheet" href="product-management.css">
+<script bis_use="true" type="text/javascript" charset="utf-8" data-bis-config="[&quot;facebook.com/&quot;,&quot;twitter.com/&quot;,&quot;youtube-nocookie.com/embed/&quot;,&quot;//vk.com/&quot;,&quot;//www.vk.com/&quot;,&quot;linkedin.com/&quot;,&quot;//www.linkedin.com/&quot;,&quot;//instagram.com/&quot;,&quot;//www.instagram.com/&quot;,&quot;//www.google.com/recaptcha/api2/&quot;,&quot;//hangouts.google.com/webchat/&quot;,&quot;//www.google.com/calendar/&quot;,&quot;//www.google.com/maps/embed&quot;,&quot;spotify.com/&quot;,&quot;soundcloud.com/&quot;,&quot;//player.vimeo.com/&quot;,&quot;//disqus.com/&quot;,&quot;//tgwidget.com/&quot;,&quot;//js.driftt.com/&quot;,&quot;friends2follow.com&quot;,&quot;/widget&quot;,&quot;login&quot;,&quot;//video.bigmir.net/&quot;,&quot;blogger.com&quot;,&quot;//smartlock.google.com/&quot;,&quot;//keep.google.com/&quot;,&quot;/web.tolstoycomments.com/&quot;,&quot;moz-extension://&quot;,&quot;chrome-extension://&quot;,&quot;/auth/&quot;,&quot;//analytics.google.com/&quot;,&quot;adclarity.com&quot;,&quot;paddle.com/checkout&quot;,&quot;hcaptcha.com&quot;,&quot;recaptcha.net&quot;,&quot;2captcha.com&quot;,&quot;accounts.google.com&quot;,&quot;www.google.com/shopping/customerreviews&quot;,&quot;buy.tinypass.com&quot;,&quot;gstatic.com&quot;,&quot;secureir.ebaystatic.com&quot;,&quot;docs.google.com&quot;,&quot;contacts.google.com&quot;,&quot;github.com&quot;,&quot;mail.google.com&quot;,&quot;chat.google.com&quot;,&quot;audio.xpleer.com&quot;,&quot;keepa.com&quot;,&quot;static.xx.fbcdn.net&quot;,&quot;sas.selleramp.com&quot;,&quot;1plus1.video&quot;,&quot;console.googletagservices.com&quot;,&quot;//lnkd.demdex.net/&quot;,&quot;//radar.cedexis.com/&quot;,&quot;//li.protechts.net/&quot;,&quot;challenges.cloudflare.com/&quot;,&quot;ogs.google.com&quot;,&quot;//www.ukrnafta.com/data/map/&quot;,&quot;//maps.google.com/maps&quot;,&quot;//www.openstreetmap.org/export/embed.html&quot;,&quot;//www.google.com/maps/d/u/3/embed&quot;]" data-dynamic-id="e4076d22-768c-489b-a0a2-8f4dfddd2f9d" src="chrome-extension://nimlmejbmnecnaghgmbahmbaddhjbecg/executors/200.js"></script><script bis_use="true" type="text/javascript" charset="utf-8" nonce="" data-dynamic-id="e4076d22-768c-489b-a0a2-8f4dfddd2f9d" src="chrome-extension://nimlmejbmnecnaghgmbahmbaddhjbecg/executors/101.js"></script></head>
+<body __processed_42e83848-91ba-459a-8e63-1c1e2ca61768__="true" bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6Im5pbWxtZWpibW5lY25hZ2hnbWJhaG1iYWRkaGpiZWNnIiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJlbmFibGVkIiwiRkFDRUJPT0siOiJlbmFibGVkIiwiVFdJVFRFUiI6ImVuYWJsZWQiLCJSRURESVQiOiJlbmFibGVkIiwiUElOVEVSRVNUIjoiZW5hYmxlZCIsIklOU1RBR1JBTSI6ImVuYWJsZWQiLCJUSUtUT0siOiJkaXNhYmxlZCIsIkxJTktFRElOIjoiZW5hYmxlZCIsIkNPTkZJRyI6ImRpc2FibGVkIn0sInZlcnNpb24iOiIyLjAuNDUiLCJzY29yZSI6MjAwNDUwfV0=">
+    <div class="container" bis_skin_checked="1">
+        <!-- Header -->
+        <header class="header">
+            <h1>🛍️ Quản Lý Sản Phẩm</h1>
+            <p class="subtitle">Hệ thống quản lý với LocalStorage</p>
+        </header>
+
+        <!-- Form Section -->
+        <section class="form-section">
+            <h2 id="formTitle">Thêm Sản Phẩm Mới</h2>
+            <form id="productForm">
+                <div class="form-row" bis_skin_checked="1">
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="productName">Tên Sản Phẩm <span class="required">*</span></label>
+                        <input type="text" id="productName" placeholder="Nhập tên sản phẩm..." autocomplete="off" required="">
+                    </div>
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="productCategory">Danh Mục <span class="required">*</span></label>
+                        <select id="productCategory" required="">
+                            <option value="">-- Chọn danh mục --</option>
+                            <option value="Điện tử">Điện tử</option>
+                            <option value="Thời trang">Thời trang</option>
+                            <option value="Thực phẩm">Thực phẩm</option>
+                            <option value="Đồ gia dụng">Đồ gia dụng</option>
+                            <option value="Sách">Sách</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row" bis_skin_checked="1">
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="productPrice">Giá (VNĐ) <span class="required">*</span></label>
+                        <input type="number" id="productPrice" placeholder="0" min="0" step="1000" required="">
+                    </div>
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="productQuantity">Số Lượng <span class="required">*</span></label>
+                        <input type="number" id="productQuantity" placeholder="0" min="0" required="">
+                    </div>
+                </div>
+
+                <div class="form-group" bis_skin_checked="1">
+                    <label for="productDescription">Mô Tả</label>
+                    <textarea id="productDescription" placeholder="Nhập mô tả sản phẩm..." rows="3"></textarea>
+                </div>
+
+                <div class="form-actions" bis_skin_checked="1">
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        ➕ Thêm Sản Phẩm
+                    </button>
+                    <button type="button" class="btn-cancel" id="cancelBtn" style="display: none;">
+                        ❌ Hủy
+                    </button>
+                    <button type="button" class="btn-clear" id="clearAllBtn">
+                        🗑️ Xóa Tất Cả
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Search & Filter Section -->
+        <section class="search-section">
+            <div class="search-group" bis_skin_checked="1">
+                <input type="text" id="searchInput" placeholder="🔍 Tìm kiếm theo tên sản phẩm..." autocomplete="off">
+                <select id="filterCategory">
+                    <option value="">Tất cả danh mục</option>
+                    <option value="Điện tử">Điện tử</option>
+                    <option value="Thời trang">Thời trang</option>
+                    <option value="Thực phẩm">Thực phẩm</option>
+                    <option value="Đồ gia dụng">Đồ gia dụng</option>
+                    <option value="Sách">Sách</option>
+                    <option value="Khác">Khác</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Product List Section -->
+        <section class="list-section">
+            <h2>Danh Sách Sản Phẩm</h2>
+            <div class="table-container" bis_skin_checked="1">
+                <table id="productTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên Sản Phẩm</th>
+                            <th>Danh Mục</th>
+                            <th>Giá</th>
+                            <th>Số Lượng</th>
+                            <th>Mô Tả</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody">
+                        
+                    </tbody>
+                </table>
+                <div class="empty-state" id="emptyState" bis_skin_checked="1">
+                    <div class="empty-state-icon" bis_skin_checked="1">📦</div>
+                    <div class="empty-state-text" bis_skin_checked="1">Chưa có sản phẩm nào. Hãy thêm sản phẩm mới!</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="stats" bis_skin_checked="1">
+                <span class="stat-item">
+                    Tổng sản phẩm: <strong id="totalProducts">3</strong>
+                </span>
+                <span class="stat-item">
+                    Tổng giá trị: <strong id="totalValue">3.000.033.000&nbsp;₫</strong>
+                </span>
+                <span class="stat-item">
+                    Tổng số lượng: <strong id="totalQuantity">9</strong>
+                </span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="product-management.js"></script>
+
+
+</body></html>
